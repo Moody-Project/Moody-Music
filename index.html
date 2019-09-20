@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js"
-      integrity="sha256-36hEPcG8mKookfvUVvEqRkpdYV1unP6wvxIqbgdeVhk="
-      crossorigin="anonymous"
-    ></script> -->
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Moody</title>
-  </head>
-  <body>
-    <h1>Books Finder</h1>
-    <div id="search"
-    <form id="myform">
-      <div id="input-field">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="project-1.css"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="background-color: orange; color: black">
+            <h1 class="display-4 text-center">Moody</h1>
+            <span style='font-size:100px;'>&#128512;</span>
+        </div>
+        
+        <br>
 
-        <input id="books" type="search" /> 
-               <label for="search">Search Books</label>
-
-      </div>
-      <button id="btn">Search</button>
-    </form>
-    <div id="ApiResult">
-
+        <div class="row">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        Here's Your Moody Curated Playlist:
+                    </div>
+                    <div class="card-body" id="displayMusic">
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">Moody:</div>
+                    <div class="card-body" id="displayWeather">
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-header">Here's Your Moody Book of the Day:</div>
+                    <div class="card-body" id="displayBook">
+                        
+                    </div>
+                        <!-- <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a> -->
+                </div>
+                            
+            </div>
+        </div>
     </div>
-    <!-- <button id="button" type="button">Click Here</button>
-    <div id="results"></div>
-    <div id="bookSearch"></div> -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
 
-    <script src="script.js"></script>
-  </body>
 </html>
+
