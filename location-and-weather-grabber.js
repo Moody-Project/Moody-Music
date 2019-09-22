@@ -32,34 +32,61 @@ $(document).ready(function () {
             })
               .then(function (response) {
                 // Sunny Scenario!
-                if (response[0].WeatherIcon === 1 || response[0].WeatherIcon === 2 || response[0].WeatherIcon === 3 || response[0].WeatherIcon === 4 || response[0].WeatherIcon === 5) {
+                if (response[0].WeatherIcon === 1 || response[0].WeatherIcon === 2 || response[0].WeatherIcon === 3 || response[0].WeatherIcon === 4 || response[0].WeatherIcon === 5 || response[0].WeatherIcon === 33 || response[0].WeatherIcon === 34 || response[0].WeatherIcon === 37) {
                   $("#displayWeather").html(response[0].WeatherText);
+                  if (response[0].IsDayTime){
                   $("#displayWeather").append($('<img src="weather-icons/sunny.png" alt="sunny">'));
+                  } else {
+                    $("#displayWeather").append($('<img src="weather-icons/nightsunny.png" alt="clear night">'));
+                  }
                   // Sunny YouTube Playlist Links go here!
 
                   // Sunny Book Recommendation goes here!
 
-                } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11) {
+                } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
                   $("#displayWeather").html(response[0].WeatherText);
+                  if (response[0].IsDayTime){
                   $("#displayWeather").append($('<img src="weather-icons/cloudy.png" alt="cloudy">'));
+                  } else {
+                    $("#displayWeather").append($('<img src="weather-icons/nightcloudy.png" alt="cloudy night">'));
+                  }
                   // Cloudy YouTube Playlist Links go here!
 
                   // Cloudy Book Recommendation goes here!
 
-                } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18) {
+                } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18 || response[0].WeatherIcon === 39 || response[0].WeatherIcon === 40) {
                   $("#displayWeather").html(response[0].WeatherText);
+                  if (response[0].IsDayTime) {
                   $("#displayWeather").append($('<img src="weather-icons/rainy.png" alt="rainy">'));
+                  } else {
+                    $("#displayWeather").append($('<img src="weather-icons/nightrainy.png" alt="rainy night">'));
+                  }
                   // Rainy YouTube Playlist Links go here!
 
                   // Rainy Book Recommendation goes here!
 
                 } else if (response[0].WeatherIcon === 15 || response[0].WeatherIcon === 16 || response[0].WeatherIcon === 17 || response[0].WeatherIcon === 41 || response[0].WeatherIcon === 42) {
                   $("#displayWeather").html(response[0].WeatherText);
+                  if (response[0].IsDayTime){
                   $("#displayWeather").append($('<img src="weather-icons/stormy.png" alt="stormy">'));
+                  } else{
+                    $("#displayWeather").append($('<img src="weather-icons/nightstormy.png" alt="stormy night">'));
+                  }
                   // Stormy YouTube Playlist Links go here!
 
                   // Stormy Book Recommendation goes here!
 
+                  // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
+                } else if (response[0].WeatherIcon === 19 || response[0].WeatherIcon === 20 || response[0].WeatherIcon === 21 || response[0].WeatherIcon === 22 || response[0].WeatherIcon === 23 || response[0].WeatherIcon === 24 || response[0].WeatherIcon === 25 || response[0].WeatherIcon === 26 || response[0].WeatherIcon === 29 || response[0].WeatherIcon === 43 || response[0].WeatherIcon === 44) {
+                  $("#displayWeather").html(response[0].WeatherText);
+                  if (response[0].IsDayTime){
+                    $("#displayWeather").append($('<img src="weather-icons/snowy.png" alt="snowy">')); 
+                  } else {
+                    $("#displayWeather").append($('<img src="weather-icons/nightsnowy.png" alt="snowy night">'));
+                  }
+                } else{
+                  //dealing with a couple random extra weather circumstances....
+                  $("#displayWeather").html("It's either really hot, really cold, or windy.")
                 }
               })
           }
