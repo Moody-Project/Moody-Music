@@ -4,7 +4,8 @@ $(document).ready(function () {
   var latitude;
   var longitude;
   var key;
-  
+
+
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
@@ -13,7 +14,7 @@ $(document).ready(function () {
     longitude = position.coords.longitude;
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function (lat, long) {
-      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=false&toplevel=true";
+      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=false&toplevel=true";
       $.ajax({
         url: locationQueryURL,
         method: "GET",
@@ -26,7 +27,7 @@ $(document).ready(function () {
           key = response.Key;
           // the following function uses a key to get the current weather conditions from AccuWeather's Current Conditions API
           var getWeather = function (thekey) {
-            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=true";
+            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=true";
             $.ajax({
               url: weatherQueryURL,
               method: "GET",
@@ -43,7 +44,7 @@ $(document).ready(function () {
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                   $("body").css({"background-image": "url('images/sun-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                   // Sunny YouTube Playlist Links go here!
-
+                 
                   // Sunny Book Recommendation goes here!
 
                   // Cloudy Scenario:
