@@ -4,6 +4,7 @@ $(document).ready(function () {
   var latitude;
   var longitude;
   var key;
+  
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
@@ -40,10 +41,12 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightsunny.png" alt="clear night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('images/sun-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                   // Sunny YouTube Playlist Links go here!
 
                   // Sunny Book Recommendation goes here!
 
+                  // Cloudy Scenario:
                 } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
                   $("#displayWeather").html(response[0].WeatherText);
                   if (response[0].IsDayTime){
@@ -52,10 +55,12 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightcloudy.png" alt="cloudy night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('images/clouds-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                   // Cloudy YouTube Playlist Links go here!
 
                   // Cloudy Book Recommendation goes here!
 
+                  // Rainy Scenario:
                 } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18 || response[0].WeatherIcon === 39 || response[0].WeatherIcon === 40) {
                   $("#displayWeather").html(response[0].WeatherText);
                   if (response[0].IsDayTime) {
@@ -64,10 +69,12 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightrainy.png" alt="rainy night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('images/rain-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                   // Rainy YouTube Playlist Links go here!
 
                   // Rainy Book Recommendation goes here!
 
+                  // Stormy Scenario:
                 } else if (response[0].WeatherIcon === 15 || response[0].WeatherIcon === 16 || response[0].WeatherIcon === 17 || response[0].WeatherIcon === 41 || response[0].WeatherIcon === 42) {
                   $("#displayWeather").html(response[0].WeatherText);
                   if (response[0].IsDayTime){
@@ -76,11 +83,13 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightstormy.png" alt="stormy night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('images/thunder-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                   // Stormy YouTube Playlist Links go here!
 
                   // Stormy Book Recommendation goes here!
 
                   // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
+                  //Snowy Scenario:
                 } else if (response[0].WeatherIcon === 19 || response[0].WeatherIcon === 20 || response[0].WeatherIcon === 21 || response[0].WeatherIcon === 22 || response[0].WeatherIcon === 23 || response[0].WeatherIcon === 24 || response[0].WeatherIcon === 25 || response[0].WeatherIcon === 26 || response[0].WeatherIcon === 29 || response[0].WeatherIcon === 43 || response[0].WeatherIcon === 44) {
                   $("#displayWeather").html(response[0].WeatherText);
                   if (response[0].IsDayTime){
@@ -89,6 +98,7 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightsnowy.png" alt="snowy night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('images/snow-background.jpg')","background-size": "cover", "background-repeat": "no-repeat","background-position": "50% 50%"});
                 } else{
                   //dealing with a couple random extra weather circumstances....
                   $("#displayWeather").html("It's either really hot, really cold, or windy.")
