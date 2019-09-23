@@ -4,6 +4,7 @@ $(document).ready(function () {
   var latitude;
   var longitude;
   var key;
+  
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
@@ -40,6 +41,7 @@ $(document).ready(function () {
                     $("#displayWeather").append($('<img src="weather-icons/nightsunny.png" alt="clear night">'));
                   }
                   $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("body").css({"background-image": "url('weather-icons/rainy.png')"});
                   // Sunny YouTube Playlist Links go here!
 
                   // Sunny Book Recommendation goes here!
