@@ -39,6 +39,7 @@ $(document).ready(function () {
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightsunny.png" alt="clear night">'));
                   }
+                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                   // Sunny YouTube Playlist Links go here!
 
                   // Sunny Book Recommendation goes here!
@@ -50,6 +51,7 @@ $(document).ready(function () {
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightcloudy.png" alt="cloudy night">'));
                   }
+                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                   // Cloudy YouTube Playlist Links go here!
 
                   // Cloudy Book Recommendation goes here!
@@ -61,6 +63,7 @@ $(document).ready(function () {
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightrainy.png" alt="rainy night">'));
                   }
+                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                   // Rainy YouTube Playlist Links go here!
 
                   // Rainy Book Recommendation goes here!
@@ -72,6 +75,7 @@ $(document).ready(function () {
                   } else{
                     $("#displayWeather").append($('<img src="weather-icons/nightstormy.png" alt="stormy night">'));
                   }
+                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                   // Stormy YouTube Playlist Links go here!
 
                   // Stormy Book Recommendation goes here!
@@ -84,6 +88,7 @@ $(document).ready(function () {
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightsnowy.png" alt="snowy night">'));
                   }
+                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
                 } else{
                   //dealing with a couple random extra weather circumstances....
                   $("#displayWeather").html("It's either really hot, really cold, or windy.")
