@@ -62,7 +62,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 34 ||
               response[0].WeatherIcon === 37
             ) {
-              $('#displayWeather').html(response[0].WeatherText);
+              $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/sunny.png" alt="sunny">')
@@ -126,7 +126,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 36 ||
               response[0].WeatherIcon === 38
             ) {
-              $('#displayWeather').html(response[0].WeatherText);
+              $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/cloudy.png" alt="cloudy">')
@@ -189,7 +189,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 39 ||
               response[0].WeatherIcon === 40
             ) {
-              $('#displayWeather').html(response[0].WeatherText);
+              $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/rainy.png" alt="rainy">')
@@ -251,7 +251,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 41 ||
               response[0].WeatherIcon === 42
             ) {
-              $('#displayWeather').html(response[0].WeatherText);
+              $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/stormy.png" alt="stormy">')
@@ -319,7 +319,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 43 ||
               response[0].WeatherIcon === 44
             ) {
-              $('#displayWeather').html(response[0].WeatherText);
+              $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/snowy.png" alt="snowy">')
