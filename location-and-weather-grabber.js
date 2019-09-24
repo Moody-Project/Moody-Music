@@ -6,8 +6,9 @@ $(document).ready(function() {
   var playlists = {
     sunny:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp',
-    cloudy:
-      'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
+   
+
+    cloudy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
     rainy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
     stormy:
