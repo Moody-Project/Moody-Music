@@ -1,29 +1,32 @@
-.container{
-        margin: 0 auto;
-        max-width: 1280px;
-        width: 90%;
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }
 
 body {
+
+
         background-image: url("images/moody-logo-background.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
+
 }
 
 .card {
-        background-color: #e2dbdb80;
+  background-color: #dbe2db80;
 }
 
-h4{
-        font-weight: bold;
+h4 {
+  font-weight: bold;
 }
 
-.second-container{
-        text-align: center;
+.second-container {
+  text-align: center;
 }
 
-h1{
-        text-decoration: underline;
-        font-weight: bold;
+h1 {
+  text-decoration: underline;
+  font-weight: bold;
 }

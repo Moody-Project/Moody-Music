@@ -6,12 +6,14 @@ $(document).ready(function() {
   var playlists = {
     sunny:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp',
+   
+
     cloudy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
     rainy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
     stormy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ',
-    snowy: 'https://www.youtube.com/embed/0iQ3NXKDacE',
+    snowy: 'https://www.youtube.com/embed/0iQ3NXKDacE'
   };
   var bookSuggestions = {
     cloudy: 'Crime and Punishment',
@@ -29,7 +31,7 @@ $(document).ready(function() {
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function(lat, long) {
       var locationQueryURL =
-        'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=mFTs4oCgPX4qpFGAJ6QMgJXQ95lv6Bhn&language=en-us&details=false&toplevel=true';
+        'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=ujWscyxxRrleIz9ob11TwACuWUMWAjst&language=en-us&details=false&toplevel=true';
       $.ajax({
         url: locationQueryURL,
         method: 'GET',
@@ -44,7 +46,7 @@ $(document).ready(function() {
           var weatherQueryURL =
             'http://dataservice.accuweather.com/currentconditions/v1/' +
             thekey +
-            '?apikey=mFTs4oCgPX4qpFGAJ6QMgJXQ95lv6Bhn&language=en-us&details=true';
+            '?apikey=ujWscyxxRrleIz9ob11TwACuWUMWAjst&language=en-us&details=true';
           $.ajax({
             url: weatherQueryURL,
             method: 'GET'
