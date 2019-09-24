@@ -15,7 +15,10 @@ $(document).ready(function() {
   };
   var bookSuggestions = {
     cloudy: 'Crime and Punishment',
-    sunny: "To All The Boys I've Loved Before"
+    sunny: "To All The Boys I've Loved Before",
+    stormy: 'devil in the white city',
+    snowy: 'endurance',
+    rainy: '1984'
   };
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
@@ -147,7 +150,9 @@ $(document).ready(function() {
                 'background-position': '50% 50%'
               });
               // Cloudy YouTube Playlist Links go here!
+
               // need to update this with CLOUDY PLAYLIST
+
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
@@ -157,7 +162,7 @@ $(document).ready(function() {
               );
               // Cloudy Book Recommendation goes here!
               var bookQueryURL =
-                'https://www.googleapis.com/books/v1/volumes?&maxResults=1&apikey=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
+                'https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
               $.ajax({
                 url: bookQueryURL,
                 method: 'GET',
@@ -168,17 +173,14 @@ $(document).ready(function() {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
+                $('#displayBook').append(
+                  $(
+                    '<img src="' +
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
+                  )
+                );
               });
-              $('#displayBook').append(
-                $(
-                  '<img> src="' +
-                    response.items[0].volumeInfo.imageLinks.smallThumbnail +
-                    '">'
-                )
-              );
-              console.log(
-                response.items[0].volumeInfo.imageLinks.smallThumbnail
-              );
               // Rainy Scenario:
             } else if (
               response[0].WeatherIcon === 12 ||
@@ -222,7 +224,26 @@ $(document).ready(function() {
                 )
               );
               // Rainy Book Recommendation goes here!
-
+              var bookQueryURL =
+                'https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
+              $.ajax({
+                url: bookQueryURL,
+                method: 'GET',
+                data: {
+                  q: bookSuggestions.rainy
+                }
+              }).then(function(response) {
+                $('#displayBook').append(
+                  $('<p>' + response.items[0].volumeInfo.title + '</p>')
+                );
+                $('#displayBook').append(
+                  $(
+                    '<img src="' +
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
+                  )
+                );
+              });
               // Stormy Scenario:
             } else if (
               response[0].WeatherIcon === 15 ||
@@ -265,7 +286,26 @@ $(document).ready(function() {
                 )
               );
               // Stormy Book Recommendation goes here!
-
+              var bookQueryURL =
+                'https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
+              $.ajax({
+                url: bookQueryURL,
+                method: 'GET',
+                data: {
+                  q: bookSuggestions.stormy
+                }
+              }).then(function(response) {
+                $('#displayBook').append(
+                  $('<p>' + response.items[0].volumeInfo.title + '</p>')
+                );
+                $('#displayBook').append(
+                  $(
+                    '<img src="' +
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
+                  )
+                );
+              });
               // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
               //Snowy Scenario:
             } else if (
@@ -314,6 +354,26 @@ $(document).ready(function() {
                     '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
+              var bookQueryURL =
+                'https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
+              $.ajax({
+                url: bookQueryURL,
+                method: 'GET',
+                data: {
+                  q: bookSuggestions.snowy
+                }
+              }).then(function(response) {
+                $('#displayBook').append(
+                  $('<p>' + response.items[0].volumeInfo.title + '</p>')
+                );
+                $('#displayBook').append(
+                  $(
+                    '<img src="' +
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
+                  )
+                );
+              });
             } else {
               //dealing with a couple random extra weather circumstances....
               $('#displayWeather').html(
