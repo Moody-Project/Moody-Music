@@ -4,6 +4,14 @@ $(document).ready(function () {
   var latitude;
   var longitude;
   var key;
+  var playlists = {
+    sunny: "https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp",
+    // cloudy playlist goes here 
+    rainy: "https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG",
+    stormy: "https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ"
+    // snowy playlist goes here
+  }
+
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
@@ -12,7 +20,7 @@ $(document).ready(function () {
     longitude = position.coords.longitude;
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function (lat, long) {
-      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=false&toplevel=true";
+      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=false&toplevel=true";
       $.ajax({
         url: locationQueryURL,
         method: "GET",
@@ -25,7 +33,7 @@ $(document).ready(function () {
           key = response.Key;
           // the following function uses a key to get the current weather conditions from AccuWeather's Current Conditions API
           var getWeather = function (thekey) {
-            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=true";
+            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=true";
             $.ajax({
               url: weatherQueryURL,
               method: "GET",
@@ -34,62 +42,71 @@ $(document).ready(function () {
                 // Sunny Scenario!
                 if (response[0].WeatherIcon === 1 || response[0].WeatherIcon === 2 || response[0].WeatherIcon === 3 || response[0].WeatherIcon === 4 || response[0].WeatherIcon === 5 || response[0].WeatherIcon === 33 || response[0].WeatherIcon === 34 || response[0].WeatherIcon === 37) {
                   $("#displayWeather").html(response[0].WeatherText);
-                  if (response[0].IsDayTime){
-                  $("#displayWeather").append($('<img src="weather-icons/sunny.png" alt="sunny">'));
+                  if (response[0].IsDayTime) {
+                    $("#displayWeather").append($('<img src="weather-icons/sunny.png" alt="sunny">'));
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightsunny.png" alt="clear night">'));
                   }
-                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
+                  $("body").css({ "background-image": "url('images/sun-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Sunny YouTube Playlist Links go here!
-
+                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Sunny Book Recommendation goes here!
 
+                  // Cloudy Scenario:
                 } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
                   $("#displayWeather").html(response[0].WeatherText);
-                  if (response[0].IsDayTime){
-                  $("#displayWeather").append($('<img src="weather-icons/cloudy.png" alt="cloudy">'));
+                  if (response[0].IsDayTime) {
+                    $("#displayWeather").append($('<img src="weather-icons/cloudy.png" alt="cloudy">'));
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightcloudy.png" alt="cloudy night">'));
                   }
-                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
+                  $("body").css({ "background-image": "url('images/clouds-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Cloudy YouTube Playlist Links go here!
 
                   // Cloudy Book Recommendation goes here!
 
+                  // Rainy Scenario:
                 } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18 || response[0].WeatherIcon === 39 || response[0].WeatherIcon === 40) {
                   $("#displayWeather").html(response[0].WeatherText);
                   if (response[0].IsDayTime) {
-                  $("#displayWeather").append($('<img src="weather-icons/rainy.png" alt="rainy">'));
+                    $("#displayWeather").append($('<img src="weather-icons/rainy.png" alt="rainy">'));
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightrainy.png" alt="rainy night">'));
                   }
-                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
+                  $("body").css({ "background-image": "url('images/rain-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Rainy YouTube Playlist Links go here!
-
+                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.rainy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Rainy Book Recommendation goes here!
 
+                  // Stormy Scenario:
                 } else if (response[0].WeatherIcon === 15 || response[0].WeatherIcon === 16 || response[0].WeatherIcon === 17 || response[0].WeatherIcon === 41 || response[0].WeatherIcon === 42) {
                   $("#displayWeather").html(response[0].WeatherText);
-                  if (response[0].IsDayTime){
-                  $("#displayWeather").append($('<img src="weather-icons/stormy.png" alt="stormy">'));
-                  } else{
+                  if (response[0].IsDayTime) {
+                    $("#displayWeather").append($('<img src="weather-icons/stormy.png" alt="stormy">'));
+                  } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightstormy.png" alt="stormy night">'));
                   }
-                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
+                  $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
+                  $("body").css({ "background-image": "url('images/thunder-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Stormy YouTube Playlist Links go here!
-
+                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.stormy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Stormy Book Recommendation goes here!
 
                   // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
+                  //Snowy Scenario:
                 } else if (response[0].WeatherIcon === 19 || response[0].WeatherIcon === 20 || response[0].WeatherIcon === 21 || response[0].WeatherIcon === 22 || response[0].WeatherIcon === 23 || response[0].WeatherIcon === 24 || response[0].WeatherIcon === 25 || response[0].WeatherIcon === 26 || response[0].WeatherIcon === 29 || response[0].WeatherIcon === 43 || response[0].WeatherIcon === 44) {
                   $("#displayWeather").html(response[0].WeatherText);
-                  if (response[0].IsDayTime){
-                    $("#displayWeather").append($('<img src="weather-icons/snowy.png" alt="snowy">')); 
+                  if (response[0].IsDayTime) {
+                    $("#displayWeather").append($('<img src="weather-icons/snowy.png" alt="snowy">'));
                   } else {
                     $("#displayWeather").append($('<img src="weather-icons/nightsnowy.png" alt="snowy night">'));
                   }
-                  $("#displayWeather").append($('<p>'+response[0].Temperature.Imperial.Value+' degrees</p>'));
-                } else{
+                  $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
+                  $("body").css({ "background-image": "url('images/snow-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
+                } else {
                   //dealing with a couple random extra weather circumstances....
                   $("#displayWeather").html("It's either really hot, really cold, or windy.")
                 }
@@ -104,18 +121,33 @@ $(document).ready(function () {
 
 
   }
+      //This function displays any errors the user may encounter when using geolocations.
+  function showError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        $("#displayWeather").html($("<p>User denied the request for Geolocation.</p>"));
+        break;
+      case error.POSITION_UNAVAILABLE:
+        $("#displayWeather").html($("<p>Location information is unavailable.</p>"));
+        break;
+      case error.TIMEOUT:
+        $("#displayWeather").html($("<p>The request to get user location timed out.</p>"));
+        break;
+      case error.UNKNOWN_ERROR:
+        $("#displayWeather").html($("<p>An unknown error occurred.</p>"));
 
+        break;
+    }
+  }
 
   // This is the function to get the user's permission to know their location
   function getLocation() {
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-
+      navigator.geolocation.getCurrentPosition(showPosition,showError);
 
     } else {
-      //I need to add in some error handlers...
-      console.log("Geolocation is not supported by this browser.");
+      $("#displayWeather").html($("<p>Geolocation is not supported by this browser.</p>"));
     }
   }
 
