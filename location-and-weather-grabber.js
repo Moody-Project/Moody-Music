@@ -64,8 +64,7 @@ var bookSuggestions = {
                     }
                   }).then (function (response){
                     $("#displayBook").append($('<p>'+ response.items[0].volumeInfo.title +'</p>'));
-                    console.log(response.items[0].volumeInfo.title);
-                    
+                    $("#displayBook").append($('<img src="' +response.items[0].volumeInfo.imageLinks.thumbnail+'">'));
                   })
                   // Cloudy Scenario:
                 } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
@@ -91,6 +90,8 @@ var bookSuggestions = {
                   }).then (function (response){
                     $("#displayBook").append($('<p>'+response.items[0].volumeInfo.title+'</p>'));
                   })
+                  $("#displayBook").append($('<img> src="' +response.items[0].volumeInfo.imageLinks.smallThumbnail+'">'));
+                  console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail);
                   // Rainy Scenario:
                 } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18 || response[0].WeatherIcon === 39 || response[0].WeatherIcon === 40) {
                   $("#displayWeather").html(response[0].WeatherText);
