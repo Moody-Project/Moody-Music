@@ -11,7 +11,10 @@ $(document).ready(function () {
     stormy: "https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ"
     // snowy playlist goes here
   }
-
+var bookSuggestions = {
+  cloudy: "Crime and Punishment",
+  sunny: "To All The Boys I've Loved Before"
+}
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
@@ -20,7 +23,7 @@ $(document).ready(function () {
     longitude = position.coords.longitude;
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function (lat, long) {
-      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=false&toplevel=true";
+      var locationQueryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=mFTs4oCgPX4qpFGAJ6QMgJXQ95lv6Bhn&language=en-us&details=false&toplevel=true";
       $.ajax({
         url: locationQueryURL,
         method: "GET",
@@ -33,7 +36,7 @@ $(document).ready(function () {
           key = response.Key;
           // the following function uses a key to get the current weather conditions from AccuWeather's Current Conditions API
           var getWeather = function (thekey) {
-            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=true";
+            var weatherQueryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + thekey + "?apikey=mFTs4oCgPX4qpFGAJ6QMgJXQ95lv6Bhn&language=en-us&details=true";
             $.ajax({
               url: weatherQueryURL,
               method: "GET",
@@ -52,7 +55,17 @@ $(document).ready(function () {
                   // Sunny YouTube Playlist Links go here!
                   $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Sunny Book Recommendation goes here!
-
+                  var bookQueryURL = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU";
+                  $.ajax({
+                    url: bookQueryURL,
+                    method: "GET",
+                    data: {
+                      q: bookSuggestions.sunny,
+                    }
+                  }).then (function (response){
+                    $("#displayBook").append($('<p>'+ response.items[0].volumeInfo.title +'</p>'));
+                    console.log(response.items[0].volumeInfo.title);
+                  })
                   // Cloudy Scenario:
                 } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
                   $("#displayWeather").html(response[0].WeatherText);
@@ -66,7 +79,16 @@ $(document).ready(function () {
                   // Cloudy YouTube Playlist Links go here!
 
                   // Cloudy Book Recommendation goes here!
-
+                  var bookQueryURL = "https://www.googleapis.com/books/v1/volumes?&maxResults=1&apikey=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU";
+                  $.ajax({
+                    url: bookQueryURL,
+                    method: "GET",
+                    data: {
+                      q: bookSuggestions.cloudy,
+                    }
+                  }).then (function (response){
+                    $("#displayBook").append($('<p>'+response.items[0].volumeInfo.title+'</p>'));
+                  })
                   // Rainy Scenario:
                 } else if (response[0].WeatherIcon === 12 || response[0].WeatherIcon === 13 || response[0].WeatherIcon === 14 || response[0].WeatherIcon === 18 || response[0].WeatherIcon === 39 || response[0].WeatherIcon === 40) {
                   $("#displayWeather").html(response[0].WeatherText);
