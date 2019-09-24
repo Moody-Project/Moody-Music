@@ -21,5 +21,3 @@ $(document).ready(function() {
   });
   return false;
 });
-// AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU
-google key
