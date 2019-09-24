@@ -53,7 +53,7 @@ var bookSuggestions = {
                   $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
                   $("body").css({ "background-image": "url('images/sun-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Sunny YouTube Playlist Links go here!
-                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
+                  $("#video").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Sunny Book Recommendation goes here!
                   var bookQueryURL = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU";
                   $.ajax({
@@ -65,6 +65,7 @@ var bookSuggestions = {
                   }).then (function (response){
                     $("#displayBook").append($('<p>'+ response.items[0].volumeInfo.title +'</p>'));
                     console.log(response.items[0].volumeInfo.title);
+                    
                   })
                   // Cloudy Scenario:
                 } else if (response[0].WeatherIcon === 6 || response[0].WeatherIcon === 7 || response[0].WeatherIcon === 8 || response[0].WeatherIcon === 11 || response[0].WeatherIcon === 35 || response[0].WeatherIcon === 36 || response[0].WeatherIcon === 38) {
@@ -77,7 +78,8 @@ var bookSuggestions = {
                   $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
                   $("body").css({ "background-image": "url('images/clouds-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Cloudy YouTube Playlist Links go here!
-
+                  // need to update this with CLOUDY PLAYLIST
+                  $("#video").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Cloudy Book Recommendation goes here!
                   var bookQueryURL = "https://www.googleapis.com/books/v1/volumes?&maxResults=1&apikey=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU";
                   $.ajax({
@@ -100,7 +102,7 @@ var bookSuggestions = {
                   $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
                   $("body").css({ "background-image": "url('images/rain-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Rainy YouTube Playlist Links go here!
-                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.rainy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
+                  $("#video").append($('<iframe width="560" height="315" src='+playlists.rainy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Rainy Book Recommendation goes here!
 
                   // Stormy Scenario:
@@ -114,7 +116,7 @@ var bookSuggestions = {
                   $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
                   $("body").css({ "background-image": "url('images/thunder-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
                   // Stormy YouTube Playlist Links go here!
-                  $("#displayMusic").append($('<iframe width="560" height="315" src='+playlists.stormy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
+                  $("#video").append($('<iframe width="560" height="315" src='+playlists.stormy+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                   // Stormy Book Recommendation goes here!
 
                   // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
@@ -128,6 +130,8 @@ var bookSuggestions = {
                   }
                   $("#displayWeather").append($('<p>' + response[0].Temperature.Imperial.Value + ' degrees</p>'));
                   $("body").css({ "background-image": "url('images/snow-background.jpg')", "background-size": "cover", "background-repeat": "no-repeat", "background-position": "50% 50%" });
+                  // need to update this with the SNOWY playlist
+                  $("#video").append($('<iframe width="560" height="315" src='+playlists.sunny+'  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
                 } else {
                   //dealing with a couple random extra weather circumstances....
                   $("#displayWeather").html("It's either really hot, really cold, or windy.")
