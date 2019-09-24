@@ -1,25 +1,23 @@
-body {
-        background-image: url("images/rain.jpg");
+.container{
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 90%;
+    }
+    body {
+        background-image: url("images/rain-background.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-}
-.jumbotron{
-        opacity: .4;    
-}
-.display-4{
-        color: black;
-        opacity: 1;
+    }
+    /* .card-content {
+        /* background-color: lightgrey; */
         
-}
-
-/* sunny */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/QtXby3twMmI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/_2qJy5r-WAY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/6CHs4x2uqcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/L_jWHffIx5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/HVHUjzZZGQ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-
-/* Thunder */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/uk_wUT1CvWM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/fJ9rUzIMcZQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
+    /* } */ 
+    
+    .second-container{
+        text-align: center;
+    }
+    h1{
+        text-decoration: underline;
+        font-weight: bold;
+    }
