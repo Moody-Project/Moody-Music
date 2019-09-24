@@ -10,14 +10,19 @@ body {
         background-repeat: no-repeat;
         background-position: 50% 50%;
 }
-    /* .card-content {
-        /* background-color: lightgrey; */
-        
-    /* } */ 
-    
+
+.card {
+        background-color: #e2dbdb80;
+}
+
+h4{
+        font-weight: bold;
+}
+
 .second-container{
         text-align: center;
 }
+
 h1{
         text-decoration: underline;
         font-weight: bold;
