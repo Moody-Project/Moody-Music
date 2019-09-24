@@ -6,12 +6,12 @@ $(document).ready(function() {
   var playlists = {
     sunny:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp',
-    // cloudy playlist goes here
+    cloudy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
     rainy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
     stormy:
-      'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ'
-    // snowy playlist goes here
+      'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ',
+    snowy: 'https://www.youtube.com/embed/0iQ3NXKDacE',
   };
   var bookSuggestions = {
     cloudy: 'Crime and Punishment',
@@ -150,13 +150,10 @@ $(document).ready(function() {
                 'background-position': '50% 50%'
               });
               // Cloudy YouTube Playlist Links go here!
-
-              // need to update this with CLOUDY PLAYLIST
-
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                    playlists.sunny +
+                    playlists.cloudy +
                     '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
@@ -306,7 +303,6 @@ $(document).ready(function() {
                   )
                 );
               });
-              // Below - I figured I should add a snowy situation since there were so many potential snow weather situations
               //Snowy Scenario:
             } else if (
               response[0].WeatherIcon === 19 ||
@@ -346,14 +342,15 @@ $(document).ready(function() {
                 'background-repeat': 'no-repeat',
                 'background-position': '50% 50%'
               });
-              // need to update this with the SNOWY playlist
+              // Snowy YouTube playlist goes here!
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                    playlists.sunny +
+                    playlists.snowy +
                     '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
+              // Snowy book recommendation goes here!
               var bookQueryURL =
                 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyD8qve3oh3rIrcjK3HBzcj-c4vo3WOWYWU';
               $.ajax({
