@@ -21,6 +21,7 @@ body {
 
 h4 {
   font-weight: bold;
+  font-family: 'lobster', cursive;
 }
 
 .second-container {
@@ -31,6 +32,10 @@ h1 {
   text-decoration: underline;
   font-weight: bold;
 }
-p{
-  font-weight: bold;
+
+.card-content{
+font-family: 'Gentium Book Basic', serif;
+color: black;
+font-size: 1.5pc;
+font-weight: bold;
 }
