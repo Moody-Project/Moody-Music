@@ -3,11 +3,10 @@ $(document).ready(function() {
   var latitude;
   var longitude;
   var key;
+  // Object to store the different playlists for each weather scenario:
   var playlists = {
     sunny:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp',
-   
-
     cloudy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
     rainy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
@@ -15,6 +14,7 @@ $(document).ready(function() {
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ',
     snowy: 'https://www.youtube.com/embed/0iQ3NXKDacE'
   };
+  // Object to store the different book searches for each weather scenario:
   var bookSuggestions = {
     cloudy: 'Crime and Punishment',
     sunny: "To All The Boys I've Loved Before",
@@ -31,7 +31,7 @@ $(document).ready(function() {
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function(lat, long) {
       var locationQueryURL =
-        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=ujWscyxxRrleIz9ob11TwACuWUMWAjst&language=en-us&details=false&toplevel=true';
+        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=false&toplevel=true';
       $.ajax({
         url: locationQueryURL,
         method: 'GET',
@@ -46,13 +46,15 @@ $(document).ready(function() {
           var weatherQueryURL =
             'https://dataservice.accuweather.com/currentconditions/v1/' +
             thekey +
-            '?apikey=ujWscyxxRrleIz9ob11TwACuWUMWAjst&language=en-us&details=true';
+            '?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=true';
           $.ajax({
             url: weatherQueryURL,
             method: 'GET'
           }).then(function(response) {
+            // Weather Scenarios are grouped based on the 40 or so weather icons used by the AccuWeather API. There are several icons for each general scenario - we used 5 scenarios and lumped the icons into groups. E.g. Mostly Sunny and Partly Sunny are lumped under the general Sunny umbrella (har har).
             // Sunny Scenario!
             if (
+              // these icon numbers are all representing variations on "sunny"
               response[0].WeatherIcon === 1 ||
               response[0].WeatherIcon === 2 ||
               response[0].WeatherIcon === 3 ||
@@ -63,6 +65,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 37
             ) {
               $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
+              // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/sunny.png" alt="sunny">')
@@ -74,6 +77,7 @@ $(document).ready(function() {
                   )
                 );
               }
+              // displaying current conditions in the weather box 
               $('#displayWeather').append(
                 $(
                   '<p>' +
@@ -81,6 +85,7 @@ $(document).ready(function() {
                     ' degrees</p>'
                 )
               );
+              // changing the overall background image to correspond with the weather 
               $('body').css({
                 'background-image': "url('images/sun-background.jpg')",
                 'background-size': 'cover',
@@ -118,6 +123,7 @@ $(document).ready(function() {
               });
               // Cloudy Scenario:
             } else if (
+              // these icon numbers are all representing variations on "cloudy"
               response[0].WeatherIcon === 6 ||
               response[0].WeatherIcon === 7 ||
               response[0].WeatherIcon === 8 ||
@@ -127,6 +133,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 38
             ) {
               $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
+              // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/cloudy.png" alt="cloudy">')
@@ -138,6 +145,7 @@ $(document).ready(function() {
                   )
                 );
               }
+              // displaying current conditions in the weather box 
               $('#displayWeather').append(
                 $(
                   '<p>' +
@@ -145,6 +153,7 @@ $(document).ready(function() {
                     ' degrees</p>'
                 )
               );
+              // changing the overall background image to correspond with the weather
               $('body').css({
                 'background-image': "url('images/clouds-background.jpg')",
                 'background-size': 'cover',
@@ -182,6 +191,7 @@ $(document).ready(function() {
               });
               // Rainy Scenario:
             } else if (
+              // these icon numbers are all representing variations on "rainy"
               response[0].WeatherIcon === 12 ||
               response[0].WeatherIcon === 13 ||
               response[0].WeatherIcon === 14 ||
@@ -190,6 +200,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 40
             ) {
               $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
+              // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/rainy.png" alt="rainy">')
@@ -201,6 +212,7 @@ $(document).ready(function() {
                   )
                 );
               }
+              // displaying current conditions in the weather box 
               $('#displayWeather').append(
                 $(
                   '<p>' +
@@ -208,6 +220,7 @@ $(document).ready(function() {
                     ' degrees</p>'
                 )
               );
+              // changing the overall background image to correspond with the weather
               $('body').css({
                 'background-image': "url('images/rain-background.jpg')",
                 'background-size': 'cover',
@@ -245,6 +258,7 @@ $(document).ready(function() {
               });
               // Stormy Scenario:
             } else if (
+              // these icon numbers are all representing variations on "stormy"
               response[0].WeatherIcon === 15 ||
               response[0].WeatherIcon === 16 ||
               response[0].WeatherIcon === 17 ||
@@ -252,6 +266,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 42
             ) {
               $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
+              // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/stormy.png" alt="stormy">')
@@ -263,6 +278,7 @@ $(document).ready(function() {
                   )
                 );
               }
+              // displaying current conditions in the weather box 
               $('#displayWeather').append(
                 $(
                   '<p>' +
@@ -270,6 +286,7 @@ $(document).ready(function() {
                     ' degrees</p>'
                 )
               );
+              // changing the overall background image to correspond with the weather
               $('body').css({
                 'background-image': "url('images/thunder-background.jpg')",
                 'background-size': 'cover',
@@ -307,6 +324,7 @@ $(document).ready(function() {
               });
               //Snowy Scenario:
             } else if (
+              // these icon numbers are all representing variations on "snowy"
               response[0].WeatherIcon === 19 ||
               response[0].WeatherIcon === 20 ||
               response[0].WeatherIcon === 21 ||
@@ -320,6 +338,7 @@ $(document).ready(function() {
               response[0].WeatherIcon === 44
             ) {
               $('#displayWeather').append($('<p>'+response[0].WeatherText+'</p>'));
+              // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
                   $('<img src="weather-icons/snowy.png" alt="snowy">')
@@ -331,6 +350,7 @@ $(document).ready(function() {
                   )
                 );
               }
+              // displaying current conditions in the weather box 
               $('#displayWeather').append(
                 $(
                   '<p>' +
@@ -338,6 +358,7 @@ $(document).ready(function() {
                     ' degrees</p>'
                 )
               );
+              // changing the overall background image to correspond with the weather
               $('body').css({
                 'background-image': "url('images/snow-background.jpg')",
                 'background-size': 'cover',
@@ -376,7 +397,7 @@ $(document).ready(function() {
             } else {
               //dealing with a couple random extra weather circumstances....
               $('#displayWeather').html(
-                "It's either really hot, really cold, or windy."
+                "It's either really hot, really cold, or windy - moody recommendation for this condition coming soon!"
               );
             }
           });
@@ -388,7 +409,7 @@ $(document).ready(function() {
     //Below we actually *run* the getLocationKey function. NB this is WITHIN the showPosition function, so we don't run getLocationKey until we have the user's latitude and longitude stored
     getLocationKey(latitude, longitude);
   }
-  //This function displays any errors the user may encounter when using geolocations.
+  //This function displays any errors the user may encounter when trying to use geolocations.
   function showError(error) {
     switch (error.code) {
       case error.PERMISSION_DENIED:
