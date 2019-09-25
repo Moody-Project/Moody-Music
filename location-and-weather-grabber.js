@@ -15,7 +15,7 @@ $(document).ready(function () {
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
     stormy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_eEuojX5xDbHP_f3WUsHLZQ',
-    snowy: 'https://www.youtube.com/embed/0iQ3NXKDacE'
+    snowy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dDhGHxRXfVq_cdW2l_t7X-'
   };
   // Object to store the different book searches for each weather scenario:
   var bookSuggestions = {
@@ -421,6 +421,8 @@ $(document).ready(function () {
   }
   //This function displays any errors the user may encounter when trying to use geolocations.
   function showError(error) {
+    $(".container").show();
+    $(".progress").hide();
     switch (error.code) {
       case error.PERMISSION_DENIED:
         $('#displayWeather').html(
@@ -450,6 +452,8 @@ $(document).ready(function () {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
 
     } else {
+      $(".container").show();
+      showerror();
       $('#displayWeather').html(
         $('<p>Geolocation is not supported by this browser.</p>')
       );
