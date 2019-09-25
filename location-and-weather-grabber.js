@@ -1,5 +1,11 @@
 
   $(".container").hide();
+  new Vue({
+    el: '.container',
+    data: {
+      show: true
+    }
+  })
 $(document).ready(function () {
 
   // setting initial variables
