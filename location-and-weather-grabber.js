@@ -125,6 +125,7 @@ $(document).ready(function () {
                     '">'
                   )
                 );
+                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/All-Boys-Ive-Loved-Before/dp/1442426705/ref=sr_1_2?keywords=to+all+the+boys+i%27ve+loved+before&qid=1569434681&s=gateway&sr=8-2">Buy it now!</a>'));
               });
               // Cloudy Scenario:
             } else if (
@@ -193,6 +194,7 @@ $(document).ready(function () {
                     '">'
                   )
                 );
+                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Crime-Punishment-Wordsworth-Classics-Dostoevsky/dp/1840224304/ref=sr_1_2?keywords=crime+and+punishment&qid=1569434995&s=gateway&sr=8-2">Buy it now!</a>'));
               });
               // Rainy Scenario:
             } else if (
@@ -260,6 +262,7 @@ $(document).ready(function () {
                     '">'
                   )
                 );
+                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/1984-Signet-Classics-George-Orwell/dp/0451524934/ref=sr_1_1?keywords=1984&qid=1569435080&s=gateway&sr=8-1">Buy it now!</a>'));
               });
               // Stormy Scenario:
             } else if (
@@ -326,6 +329,7 @@ $(document).ready(function () {
                     '">'
                   )
                 );
+                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Devil-White-City-Madness-Changed/dp/B0000DE6QB/ref=sr_1_2?keywords=devil+in+the+white+city&qid=1569435136&s=gateway&sr=8-2">Buy it now!</a>'));
               });
               //Snowy Scenario:
             } else if (
@@ -398,6 +402,7 @@ $(document).ready(function () {
                     '">'
                   )
                 );
+                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Endurance-Shackletons-Incredible-Alfred-Lansing/dp/0465062881/ref=sr_1_1?crid=TS7YEZCM3OI4&keywords=endurance+shackleton%27s+incredible+voyage+by+alfred+lansing&qid=1569435168&s=audible&sprefix=endurance+shackl%2Caudible%2C179&sr=1-1-catcorr">Buy it now!</a>'));
               });
             } else {
               //dealing with a couple random extra weather circumstances....
