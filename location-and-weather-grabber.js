@@ -36,7 +36,7 @@ $(document).ready(function () {
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
     var getLocationKey = function (lat, long) {
       var locationQueryURL =
-        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=false&toplevel=true';
+        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=false&toplevel=true';
       $.ajax({
         url: locationQueryURL,
         method: 'GET',
@@ -51,7 +51,7 @@ $(document).ready(function () {
           var weatherQueryURL =
             'https://dataservice.accuweather.com/currentconditions/v1/' +
             thekey +
-            '?apikey=c5lAV7P9wARFOa8nA5SlxAkF2kwNMGwd&language=en-us&details=true';
+            '?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=true';
           $.ajax({
             url: weatherQueryURL,
             method: 'GET'
