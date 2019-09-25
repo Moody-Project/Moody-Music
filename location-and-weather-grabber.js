@@ -28,6 +28,7 @@ $(document).ready(function () {
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
+    $(".progress").hide();
     $(".container").show();
     // position & cords will be refered to at the bottom when we check to see if location services are enabled. Below we reset the variables latitude and longitude to the grabbed coordinates from the user's browser
     latitude = position.coords.latitude;
