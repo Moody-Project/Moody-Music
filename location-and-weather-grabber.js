@@ -1,7 +1,5 @@
-
-  $(".container").hide();
-$(document).ready(function () {
-
+$('.container').hide();
+$(document).ready(function() {
   // setting initial variables
   var latitude;
   var longitude;
@@ -10,7 +8,8 @@ $(document).ready(function () {
   var playlists = {
     sunny:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_e90kVYMmrW20IaP12tRbbp',
-    cloudy: 'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
+    cloudy:
+      'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_dqH92f9q-rvBhwTHwhr-1u',
     rainy:
       'https://www.youtube.com/embed/videoseries?list=PLxLLzv-6F2_cr90z0I1F372NZSKtx2UPG',
     stormy:
@@ -28,34 +27,34 @@ $(document).ready(function () {
 
   // this is the function chain that, in a couple steps, grabs the user's latitude and longitude and also grabs the AccuWeather API's location key for the provided latitude and longitude
   function showPosition(position) {
-    $(".progress").hide();
-    $(".container").show();
+    $('.progress').hide();
+    $('.container').show();
     // position & cords will be refered to at the bottom when we check to see if location services are enabled. Below we reset the variables latitude and longitude to the grabbed coordinates from the user's browser
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     // the following function grabs the location key from the AccuWeather's Locations API (using Geoposition search), using latitude and longitude arguments
-    var getLocationKey = function (lat, long) {
+    var getLocationKey = function(lat, long) {
       var locationQueryURL =
-        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=false&toplevel=true';
+        'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=PlAZAdlTGkieewVJy0Eu5SfTXDYptaXL&language=en-us&details=false&toplevel=true';
       $.ajax({
         url: locationQueryURL,
         method: 'GET',
         data: {
           q: lat + ',' + long
         }
-      }).then(function (response) {
+      }).then(function(response) {
         // Below we reset the key variable to be key from AccuWeather
         key = response.Key;
         // the following function uses a key to get the current weather conditions from AccuWeather's Current Conditions API
-        var getWeather = function (thekey) {
+        var getWeather = function(thekey) {
           var weatherQueryURL =
             'https://dataservice.accuweather.com/currentconditions/v1/' +
             thekey +
-            '?apikey=TbxW2Nksz0rN6D2AwICG6IJKaVs5nYAh&language=en-us&details=true';
+            '?apikey=PlAZAdlTGkieewVJy0Eu5SfTXDYptaXL&language=en-us&details=true';
           $.ajax({
             url: weatherQueryURL,
             method: 'GET'
-          }).then(function (response) {
+          }).then(function(response) {
             // Weather Scenarios are grouped based on the 40 or so weather icons used by the AccuWeather API. There are several icons for each general scenario - we used 5 scenarios and lumped the icons into groups. E.g. Mostly Sunny and Partly Sunny are lumped under the general Sunny umbrella (har har).
             // Sunny Scenario!
             if (
@@ -69,7 +68,9 @@ $(document).ready(function () {
               response[0].WeatherIcon === 34 ||
               response[0].WeatherIcon === 37
             ) {
-              $('#displayWeather').append($('<p>' + response[0].WeatherText + '</p>'));
+              $('#displayWeather').append(
+                $('<p>' + response[0].WeatherText + '</p>')
+              );
               // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
@@ -82,15 +83,15 @@ $(document).ready(function () {
                   )
                 );
               }
-              // displaying current conditions in the weather box 
+              // displaying current conditions in the weather box
               $('#displayWeather').append(
                 $(
                   '<p>' +
-                  response[0].Temperature.Imperial.Value +
-                  ' degrees</p>'
+                    response[0].Temperature.Imperial.Value +
+                    ' degrees</p>'
                 )
               );
-              // changing the overall background image to correspond with the weather 
+              // changing the overall background image to correspond with the weather
               $('body').css({
                 'background-image': "url('images/sun-background.jpg')",
                 'background-size': 'cover',
@@ -101,8 +102,8 @@ $(document).ready(function () {
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                  playlists.sunny +
-                  '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                    playlists.sunny +
+                    '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
               // Sunny Book Recommendation goes here!
@@ -114,18 +115,22 @@ $(document).ready(function () {
                 data: {
                   q: bookSuggestions.sunny
                 }
-              }).then(function (response) {
+              }).then(function(response) {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
                 $('#displayBook').append(
                   $(
                     '<img src="' +
-                    response.items[0].volumeInfo.imageLinks.thumbnail +
-                    '">'
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
                   )
                 );
-                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/All-Boys-Ive-Loved-Before/dp/1442426705/ref=sr_1_2?keywords=to+all+the+boys+i%27ve+loved+before&qid=1569434681&s=gateway&sr=8-2">Buy it now!</a>'));
+                $('#displayBook').append(
+                  $(
+                    '<br><a target="_blank" href="https://www.amazon.com/All-Boys-Ive-Loved-Before/dp/1442426705/ref=sr_1_2?keywords=to+all+the+boys+i%27ve+loved+before&qid=1569434681&s=gateway&sr=8-2">Buy it now!</a>'
+                  )
+                );
               });
               // Cloudy Scenario:
             } else if (
@@ -138,7 +143,9 @@ $(document).ready(function () {
               response[0].WeatherIcon === 36 ||
               response[0].WeatherIcon === 38
             ) {
-              $('#displayWeather').append($('<p>' + response[0].WeatherText + '</p>'));
+              $('#displayWeather').append(
+                $('<p>' + response[0].WeatherText + '</p>')
+              );
               // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
@@ -151,12 +158,12 @@ $(document).ready(function () {
                   )
                 );
               }
-              // displaying current conditions in the weather box 
+              // displaying current conditions in the weather box
               $('#displayWeather').append(
                 $(
                   '<p>' +
-                  response[0].Temperature.Imperial.Value +
-                  ' degrees</p>'
+                    response[0].Temperature.Imperial.Value +
+                    ' degrees</p>'
                 )
               );
               // changing the overall background image to correspond with the weather
@@ -170,8 +177,8 @@ $(document).ready(function () {
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                  playlists.cloudy +
-                  '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                    playlists.cloudy +
+                    '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
               // Cloudy Book Recommendation goes here!
@@ -183,18 +190,22 @@ $(document).ready(function () {
                 data: {
                   q: bookSuggestions.cloudy
                 }
-              }).then(function (response) {
+              }).then(function(response) {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
                 $('#displayBook').append(
                   $(
                     '<img src="' +
-                    response.items[0].volumeInfo.imageLinks.thumbnail +
-                    '">'
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
                   )
                 );
-                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Crime-Punishment-Wordsworth-Classics-Dostoevsky/dp/1840224304/ref=sr_1_2?keywords=crime+and+punishment&qid=1569434995&s=gateway&sr=8-2">Buy it now!</a>'));
+                $('#displayBook').append(
+                  $(
+                    '<br><a target="_blank" href="https://www.amazon.com/Crime-Punishment-Wordsworth-Classics-Dostoevsky/dp/1840224304/ref=sr_1_2?keywords=crime+and+punishment&qid=1569434995&s=gateway&sr=8-2">Buy it now!</a>'
+                  )
+                );
               });
               // Rainy Scenario:
             } else if (
@@ -206,7 +217,9 @@ $(document).ready(function () {
               response[0].WeatherIcon === 39 ||
               response[0].WeatherIcon === 40
             ) {
-              $('#displayWeather').append($('<p>' + response[0].WeatherText + '</p>'));
+              $('#displayWeather').append(
+                $('<p>' + response[0].WeatherText + '</p>')
+              );
               // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
@@ -219,12 +232,12 @@ $(document).ready(function () {
                   )
                 );
               }
-              // displaying current conditions in the weather box 
+              // displaying current conditions in the weather box
               $('#displayWeather').append(
                 $(
                   '<p>' +
-                  response[0].Temperature.Imperial.Value +
-                  ' degrees</p>'
+                    response[0].Temperature.Imperial.Value +
+                    ' degrees</p>'
                 )
               );
               // changing the overall background image to correspond with the weather
@@ -238,8 +251,8 @@ $(document).ready(function () {
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                  playlists.rainy +
-                  '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                    playlists.rainy +
+                    '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
               // Rainy Book Recommendation goes here!
@@ -251,18 +264,22 @@ $(document).ready(function () {
                 data: {
                   q: bookSuggestions.rainy
                 }
-              }).then(function (response) {
+              }).then(function(response) {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
                 $('#displayBook').append(
                   $(
                     '<img src="' +
-                    response.items[0].volumeInfo.imageLinks.thumbnail +
-                    '">'
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
                   )
                 );
-                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/1984-Signet-Classics-George-Orwell/dp/0451524934/ref=sr_1_1?keywords=1984&qid=1569435080&s=gateway&sr=8-1">Buy it now!</a>'));
+                $('#displayBook').append(
+                  $(
+                    '<br><a target="_blank" href="https://www.amazon.com/1984-Signet-Classics-George-Orwell/dp/0451524934/ref=sr_1_1?keywords=1984&qid=1569435080&s=gateway&sr=8-1">Buy it now!</a>'
+                  )
+                );
               });
               // Stormy Scenario:
             } else if (
@@ -273,7 +290,9 @@ $(document).ready(function () {
               response[0].WeatherIcon === 41 ||
               response[0].WeatherIcon === 42
             ) {
-              $('#displayWeather').append($('<p>' + response[0].WeatherText + '</p>'));
+              $('#displayWeather').append(
+                $('<p>' + response[0].WeatherText + '</p>')
+              );
               // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
@@ -286,12 +305,12 @@ $(document).ready(function () {
                   )
                 );
               }
-              // displaying current conditions in the weather box 
+              // displaying current conditions in the weather box
               $('#displayWeather').append(
                 $(
                   '<p>' +
-                  response[0].Temperature.Imperial.Value +
-                  ' degrees</p>'
+                    response[0].Temperature.Imperial.Value +
+                    ' degrees</p>'
                 )
               );
               // changing the overall background image to correspond with the weather
@@ -305,8 +324,8 @@ $(document).ready(function () {
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                  playlists.stormy +
-                  '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                    playlists.stormy +
+                    '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
               // Stormy Book Recommendation goes here!
@@ -318,18 +337,22 @@ $(document).ready(function () {
                 data: {
                   q: bookSuggestions.stormy
                 }
-              }).then(function (response) {
+              }).then(function(response) {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
                 $('#displayBook').append(
                   $(
                     '<img src="' +
-                    response.items[0].volumeInfo.imageLinks.thumbnail +
-                    '">'
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
                   )
                 );
-                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Devil-White-City-Madness-Changed/dp/B0000DE6QB/ref=sr_1_2?keywords=devil+in+the+white+city&qid=1569435136&s=gateway&sr=8-2">Buy it now!</a>'));
+                $('#displayBook').append(
+                  $(
+                    '<br><a target="_blank" href="https://www.amazon.com/Devil-White-City-Madness-Changed/dp/B0000DE6QB/ref=sr_1_2?keywords=devil+in+the+white+city&qid=1569435136&s=gateway&sr=8-2">Buy it now!</a>'
+                  )
+                );
               });
               //Snowy Scenario:
             } else if (
@@ -346,7 +369,9 @@ $(document).ready(function () {
               response[0].WeatherIcon === 43 ||
               response[0].WeatherIcon === 44
             ) {
-              $('#displayWeather').append($('<p>' + response[0].WeatherText + '</p>'));
+              $('#displayWeather').append(
+                $('<p>' + response[0].WeatherText + '</p>')
+              );
               // if statement to decide whether to show the daytime or nighttime weather icon
               if (response[0].IsDayTime) {
                 $('#displayWeather').append(
@@ -359,12 +384,12 @@ $(document).ready(function () {
                   )
                 );
               }
-              // displaying current conditions in the weather box 
+              // displaying current conditions in the weather box
               $('#displayWeather').append(
                 $(
                   '<p>' +
-                  response[0].Temperature.Imperial.Value +
-                  ' degrees</p>'
+                    response[0].Temperature.Imperial.Value +
+                    ' degrees</p>'
                 )
               );
               // changing the overall background image to correspond with the weather
@@ -378,8 +403,8 @@ $(document).ready(function () {
               $('#video').append(
                 $(
                   '<iframe width="560" height="315" src=' +
-                  playlists.snowy +
-                  '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                    playlists.snowy +
+                    '  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                 )
               );
               // Snowy book recommendation goes here!
@@ -391,18 +416,22 @@ $(document).ready(function () {
                 data: {
                   q: bookSuggestions.snowy
                 }
-              }).then(function (response) {
+              }).then(function(response) {
                 $('#displayBook').append(
                   $('<p>' + response.items[0].volumeInfo.title + '</p>')
                 );
                 $('#displayBook').append(
                   $(
                     '<img src="' +
-                    response.items[0].volumeInfo.imageLinks.thumbnail +
-                    '">'
+                      response.items[0].volumeInfo.imageLinks.thumbnail +
+                      '">'
                   )
                 );
-                $("#displayBook").append($('<br><a target="_blank" href="https://www.amazon.com/Endurance-Shackletons-Incredible-Alfred-Lansing/dp/0465062881/ref=sr_1_1?crid=TS7YEZCM3OI4&keywords=endurance+shackleton%27s+incredible+voyage+by+alfred+lansing&qid=1569435168&s=audible&sprefix=endurance+shackl%2Caudible%2C179&sr=1-1-catcorr">Buy it now!</a>'));
+                $('#displayBook').append(
+                  $(
+                    '<br><a target="_blank" href="https://www.amazon.com/Endurance-Shackletons-Incredible-Alfred-Lansing/dp/0465062881/ref=sr_1_1?crid=TS7YEZCM3OI4&keywords=endurance+shackleton%27s+incredible+voyage+by+alfred+lansing&qid=1569435168&s=audible&sprefix=endurance+shackl%2Caudible%2C179&sr=1-1-catcorr">Buy it now!</a>'
+                  )
+                );
               });
             } else {
               //dealing with a couple random extra weather circumstances....
@@ -448,7 +477,6 @@ $(document).ready(function () {
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
-
     } else {
       $('#displayWeather').html(
         $('<p>Geolocation is not supported by this browser.</p>')
@@ -458,5 +486,4 @@ $(document).ready(function () {
 
   //Below we actually run the getLocation function. This will be the first thing to happen when the page loads!
   getLocation();
-
 });
